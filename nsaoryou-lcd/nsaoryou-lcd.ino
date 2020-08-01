@@ -5,19 +5,22 @@
  */
 
 #include <EnableInterrupt.h>
+#include <LiquidCrystal.h>
 
 #define startMode 0
 #define coinMode 1
 #define personalSecret 2
 #define publicAnnounce 3
 
-#define modeBtn 2
-#define inputBtn 3
-#define resultBtn 4
+#define modeBtn 8
+#define inputBtn 7
+#define resultBtn 10
 
 #define DEBOUNCE_TIME 200
 
 int mode;
+
+bool coin = 0;
 
 bool personalTotal = 0;
 bool temporarySecret = 0;
@@ -34,6 +37,10 @@ long current_time_result = 0;
 long debounce_time_input = 0;
 long current_time_input = 0;
 
+
+const int rs = 11, en = 12, d4 = 2, d5 = 3, d6 = 4, d7 = 5;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
 /*
  * Each mode change will reset all variables needed for the entered mode.
  * Each mode should be isolated and modes should not share information.
@@ -46,19 +53,21 @@ void changeMode() {
     if (mode > 4) {
       mode = 0;
     }
-    Serial.println("\n");
     switch (mode) {
       case startMode:
-        Serial.println("Startmode");
+        Serial.println("NSA or YOU? start");
         break;
       case coinMode:
-        Serial.println("Coin Mode \nPress (R) to toss coin.");
+        coin = 0;
+        Serial.println("Coin toss");
+        lcd.setCursor(0,0);
+        lcd.print("Coin toss?      ");
         break;
       case personalSecret:
         personalTotal = 0;
         personalCounter = 0;
         temporarySecret = 0;
-        Serial.println("Personal Secret Mode \nInput two secrets, get one back. \nPress (R) to confirm input. Press (I) to change it.");
+        Serial.println("Personal secret");
         break;
       case publicAnnounce:
         publicTotal = 0;
@@ -119,7 +128,8 @@ void getModeResult() {
 
       case coinMode:
         Serial.print("Tossed a coin. You got ");
-        Serial.println(random(2));
+        coin = random(2);
+        Serial.println(coin);
         break;
 
       case personalSecret:
@@ -177,6 +187,7 @@ void getModeResult() {
 
 void setup() {
   Serial.begin(9600);
+  lcd.begin(16, 2);
   randomSeed(analogRead(0));
 
   pinMode(modeBtn, INPUT_PULLUP);
@@ -192,4 +203,73 @@ void setup() {
   Serial.println("Startmode");
 }
 
-void loop() {}
+void loop() {
+  lcd.clear();
+  switch (mode) {
+      case startMode:
+        lcd.setCursor(0,0);
+        lcd.print("NSA or YOU?     ");
+        break;
+      case coinMode:
+        lcd.setCursor(0,0);
+        lcd.print("Coin toss?   (R)");
+        lcd.setCursor(0,1);
+        lcd.print(coin);
+        break;
+      case personalSecret:
+        lcd.setCursor(0,0);
+        lcd.print("Personal secret ");
+        if (personalCounter == 0) {
+          lcd.setCursor(0,1);
+          lcd.print(temporarySecret);
+          lcd.print(" (I)");
+        } else if (personalCounter == 1) {
+          lcd.setCursor(0,1);
+          lcd.print(personalTotal);
+          lcd.print(" ^ ");
+          lcd.print(temporarySecret);
+          lcd.print(" (I) -> (R)");
+        }
+        if (personalCounter >= 2) {
+          lcd.setCursor(0,1);
+          lcd.print("=> ");
+          lcd.print(personalTotal);
+          lcd.print(" (or ");
+          lcd.print(!personalTotal);
+          lcd.print(")  ");
+        }
+        break;
+      case publicAnnounce:
+        lcd.setCursor(0,0);
+        lcd.print("Public announce");
+        if (publicCounter == 0) {
+          lcd.setCursor(0,1);
+          lcd.print(temporaryPublic);
+          lcd.print(" (I)");
+        } else if (publicCounter == 1) {
+          lcd.setCursor(0,1);
+          lcd.print(publicTotal);
+          lcd.print(" ^ ");
+          lcd.print(temporaryPublic);
+          lcd.print(" (I)");
+        } else {
+          lcd.setCursor(0,1);
+          lcd.print(publicTotal);
+          lcd.print(" ^ ");
+          lcd.print(temporaryPublic);
+          lcd.print(" (I) -> (R)");
+        }
+
+        if (publicCounter >= 3) {
+          if (publicTotal) {
+            lcd.setCursor(0,1);
+            lcd.print("YOU");
+          } else {
+            lcd.setCursor(0,1);
+            lcd.print("NSA");
+          }
+        }
+        break;
+    }  
+    delay(20);
+}
