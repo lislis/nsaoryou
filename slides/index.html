@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>From Nand To Dinner - CEST August 2020</title>
+    <meta>
+    <link href="assets/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <textarea id="source">
+      class: center, middle
+
+      # .title.alex[From Nand to Dinner]
+      ## .subtitle.alex[A Midsummer Night’s Talk]
+
+      Lisa '[lislis](https://lislis.de/)' Passing
+
+      [CEST - Aug 2020](https://clojureverse.org/t/new-online-meetup-clojure-european-summer-time/6018/9)
+
+      ---
+
+      class: center, middle
+
+      ### I've been getting into hardware recently.
+
+      ---
+
+      background-image: url(assets/tweet.png)
+      background-size: contain
+
+
+      .link[[//twitter.com/daisyowl/status/841802094361235456](https://twitter.com/daisyowl/status/841802094361235456)]
+
+      .hidden[Screenshot of a tweet by @daisyowl saying "If you ever code something that  'feels like a hack but it works', just remember that a CPU is literally a rock we tricked into thinking"]
+
+
+      ---
+
+      class: center, middle
+
+      .title[🤔]
+
+      --
+
+      ## How did we trick a rock into thinking?
+
+      ---
+
+      class: center, middle
+
+      .subtitle[Part I]
+      .subtitle.alex[
+      # A Tale of Semiconductors]
+
+      ---
+
+      class: center, middle
+      ### Everybody's favorite semiconductor:
+
+      ---
+
+      class: center, middle, blend
+      background-size: cover
+      background-image: url(assets/SiliconCroda.jpg)
+
+      .border[
+      # Silicon]
+
+      ---
+
+      layout: true
+      background-position: right center
+      background-size: 40%
+
+      ## What makes Silicon cool?
+
+      ---
+
+      ---
+
+      class: blend2
+      background-image: url(assets/si-single-2.jpg)
+      background-size: 30%
+
+      .half[
+      **Silicon** (*Si*) has 4 electrons it's outer (Valence) shell.]
+
+      ---
+
+      class: blend2
+      background-image: url(assets/si-grid-2.jpg)
+
+      .half[
+      **Silicon** (*Si*) has 4 electrons it's outer (Valence) shell.
+
+      It will from strong bonds with other Si atoms, sharing electrons to achieve 8 Valence electrons.]
+
+      ---
+
+      class: blend2
+
+      .half[
+      Through introducing impurities in the silicon, we can alter its conductivity (This is called **doping**).]
+
+      ---
+
+      class: blend2
+      background-image: url(assets/n-type-2.jpg)
+
+      .half[
+      Through introducing impurities in the silicon, we can alter its conductivity (This is called **doping**).
+
+      **Phosphorus** (*P*, 5 Valence electrons) will introduce an extra electron (n-type).]
+
+      ---
+
+      class: blend2
+      background-image: url(assets/p-type-2.jpg)
+
+      .half[
+      Through introducing impurities in the silicon, we can alter its conductivity (This is called **doping**).
+
+      **Phosphorus** (*P*, 5 Valence electrons) will introduce an extra electron (n-type).
+
+      **Boron** (*B*, 3 Valence electrons) will introduce a gap (p-type).]
+
+      ---
+
+      layout: false
+      class: center, middle
+
+      .title[🤷‍♀️]
+
+      Aaand what?
+
+      ---
+
+      class: center, middle
+      ## We can build a transistor!
+
+      ---
+
+      class: center, middle
+      background-image: url(assets/transistor.jpg)
+      background-size: cover
+
+      ---
+
+      # MOSFET
+
+      **M**etal-**O**xide-**S**emiconductor **F**ield-**E**ffect **T**ransistor
+
+      --
+
+      A switch (or amplifier) without any mechanical parts.
+
+      --
+
+      - FET proposed and patented in 1925, but no working device
+
+      --
+
+      - 17 years later the patent ran out and people started working on a working device
+
+      --
+
+      - 1959 working MOSFET invented at Bell Labs
+
+      --
+
+      - Kickstarted the information age revolution!
+
+      ---
+
+      background-size: cover
+      background-image: url(assets/WWVNBSRadioStation_015.jpg)
+      .border[
+      ## Transistors replaced vacuum tubes]
+
+      ---
+
+      class: middle, center
+      ## How does a MOS transistor work?
+
+      ---
+
+      class: blend2
+      background-size: contain
+      background-image: url(assets/transistor1-2.jpg)
+
+      ---
+
+      class: blend2
+      background-size: contain
+      background-image: url(assets/transistor2-2.jpg)
+
+      ---
+
+      class: blend2
+      background-size: contain
+      background-image: url(assets/transistor3-2.jpg)
+
+      ---
+
+      class: middle, center
+      ## And this is how transistors work!
+
+      ---
+
+      ## Abstractions!
+
+      Current (or lack of) gives us logic states,
+
+      transistors give us logic gates NOT, AND, OR
+
+      --
+
+      .flip[↵] NAND, NOR, XOR, NXOR
+
+      --
+
+      .flip[↵] Half-Adders and then Full-Adders
+
+      --
+
+      .flip[↵] ALU
+
+      --
+
+      .flip[↵] Memory
+
+      --
+
+      .flip[↵] CPU
+
+      ---
+
+      ## From Nand to Tetris
+
+      There is a book for that!
+
+      https://www.nand2tetris.org/
+
+      And a video playlist
+
+      https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo
+
+      ---
+
+      background-image: url(assets/TransmissionCmosXORGate.png)
+      # XOR
+
+      ---
+
+      background-image: url(assets/2560px-XOR_ANSI.png)
+      # XOR
+
+      ---
+
+      # XOR
+
+      Input A | Input B | Output
+      --------|--------|-----
+      0  | 0 | 0
+      0  | 1 | 1
+      1  | 0 | 1
+      1  | 1 | 0
+
+      ---
+
+      class: center, middle
+
+      .subtitle[Part II]
+      .subtitle.alex[
+      # Dinner with Cryptographers]
+
+      ---
+
+      ## The Dining Cryptographers Problem pt1
+
+      --
+
+      “Three cryptographers gather around a table for dinner.
+
+      --
+
+      The waiter informs them that the meal has been paid for by someone, who could be one of the cryptographers or the National Security Agency (NSA).
+
+      --
+
+      The cryptographers respect each other's right to make an anonymous payment, but want to find out whether the NSA paid.
+
+      ---
+
+      ## The Dining Cryptographers Problem pt2
+
+      “So they decide to execute a two-stage protocol.
+
+      --
+
+      In the first stage, every two cryptographers establish a shared one-bit secret, say by tossing a coin behind a menu so that only two cryptographers see the outcome in turn for each two cryptographers.
+
+      --
+
+      Suppose, for example, that after the coin tossing, cryptographer A and B share a secret bit 1, A and C share 0, and B and C share 1.
+
+      ---
+
+      ## The Dining Cryptographers Problem pt3
+      “In the second stage, each cryptographer publicly announces a bit, which is:
+
+      - if they didn't pay for the meal, the exclusive OR (XOR) of the two shared bits they hold with their two neighbours,
+      - if they did pay for the meal, the opposite of that XOR.
+
+      ---
+
+      ## The Dining Cryptographers Problem pt4
+
+      “Supposing none of the cryptographers paid, then A announces 1 ⊕ 0 = 1, B announces 1 ⊕ 1 = 0, and C announces 0 ⊕ 1 = 1.
+
+      --
+
+      On the other hand, if A paid, she announces ¬ ( 1 ⊕ 0 ) = 0.
+
+      --
+
+      The three public announcements combined reveal the answer to their question. One simply computes the XOR of the three bits announced.
+
+      --
+
+      If the result is 0, it implies that none of the cryptographers paid (so the NSA must have paid the bill).
+
+      --
+
+      Otherwise, one of the cryptographers paid, but their identity remains unknown to the other cryptographers.”
+
+      .link[https://en.wikipedia.org/wiki/Dining_cryptographers_problem]
+
+      ---
+
+      background-size: cover
+      background-image: url(assets/mindblown.gif)
+
+      .hidden[mind blown]
+
+      ---
+
+      # DC-networks
+
+      --
+
+      - Anonymous communication networks with unconditional sender and recipient untraceability
+
+      --
+
+      - Though simple and elegant, there are limitations
+
+        - Collisions, eg when 2 cryptographers paid
+
+        - Disruption, eg malicious messages
+
+        - Complexity, eg pairwise shared secrets
+
+      ---
+
+      # DC-networks
+
+      There is further research and prototypes available!
+
+      - [Paper on implementing DC as protocol](https://fahrplan.events.ccc.de/congress/2007/Fahrplan/attachments/981_ccc-paper.pdf)
+
+      - [Paper on Verdict](https://dedis.cs.yale.edu/dissent/papers/verdict-abs/)
+
+      - [Paper on Dissent](https://dedis.cs.yale.edu/dissent/)
+
+      - [Herbivore](http://www.cs.cornell.edu/people/egs/herbivore/documentation.html)
+
+      ---
+
+      class: middle, center
+
+      ## I think DC solves a real life problem.
+
+      ---
+
+      class: middle, center
+      Did someone in your group pay for your drinks, or some rando?
+
+      --
+
+      (While respecting everyone's right to make an anonymous payment)
+
+      ---
+
+      class: center, middle
+
+      ### I've been getting into hardware recently.
+
+      --
+
+      And I build a device for that.
+
+      ---
+
+      ---
+
+      class: middle
+      ## Thank you!
+
+      .no-bullets[
+      - 📧 mail@lislis.de
+      - 🐘 [@lislis@toot.cat](https://toot.cat/@lislis)
+      - 🐙 || 🦊 lislis
+      - 📽 [//lislis.de/talks/nand-to-dinner](https://lislis.de/talks/nand-to-dinner)
+      - 💽 [//github.com/lislis/nsaoryou](https://github.com/lislis/nsaoryou)]
+
+
+    </textarea>
+    <script src="assets/remark.min.js"></script>
+    <script>var slideshow = remark.create({
+       ratio: '16:9',
+       navigation: {
+         scroll: false
+       }});
+    </script>
+  </body>
+</html>
